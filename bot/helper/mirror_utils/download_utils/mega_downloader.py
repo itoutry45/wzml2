@@ -226,7 +226,7 @@ def add_mega_download(mega_link: str, path: str, listener, name: str):
             LOGGER.info('Checking File/Folder Size...')
             if size > limit * 1024**3:
                 return sendMessage(msg3, listener.bot, listener.message)
-    
+
     with download_dict_lock:
         download_dict[listener.uid] = MegaDownloadStatus(mega_listener, listener)
     listener.onDownloadStart()

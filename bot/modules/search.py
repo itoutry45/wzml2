@@ -17,8 +17,7 @@ from bot.helper.ext_utils.html_helper import html_template
 if SEARCH_PLUGINS is not None:
     PLUGINS = []
     qbclient = get_client()
-    qb_plugins = qbclient.search_plugins()
-    if qb_plugins:
+    if qb_plugins := qbclient.search_plugins():
         for plugin in qb_plugins:
             qbclient.search_uninstall_plugin(names=plugin['name'])
     qbclient.search_install_plugin(SEARCH_PLUGINS)
@@ -179,10 +178,6 @@ def _search(bot, key, site, message, method):
         buttons.buildbutton("🔎 VIEW", link)
         button = buttons.build_menu(1)
         editMessage(msg, message, button)
-        if not method.startswith('api'):
-            client.search_delete(search_id=search_id)
-    
-    
     else:
 
 
@@ -243,8 +238,8 @@ def _search(bot, key, site, message, method):
             f.write(html_template.replace('{msg}', hmsg).replace('{title}', f'{method}_{key}_{site}'))
         deleteMessage(bot, message)
         sendFile(bot, message.reply_to_message, name, cap)
-        if not method.startswith('api'):
-            client.search_delete(search_id=search_id)
+    if not method.startswith('api'):
+        client.search_delete(search_id=search_id)
 
 def _getResult(search_results, key, message, method):
     if TELEGRAPH_STYLE is True:

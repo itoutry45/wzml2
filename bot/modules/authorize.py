@@ -194,8 +194,7 @@ def sendAuthChats(update, context):
     sendMessage(f'<b><u>Authorized Chats💬 :</u></b>\n{user}\n<b><u>Sudo Users👤 :</u></b>\n{sudo}\n<b><u>Leech Log:</u></b>\n{leechlog}', context.bot, update.message)
 
 def sendPaidDetails(update, context):
-    paid = ''
-    paid += '\n'.join(f"<code>{uid}</code>" for uid in PAID_USERS)
+    paid = '' + '\n'.join(f"<code>{uid}</code>" for uid in PAID_USERS)
     sendMessage(f'<b><u>Paid Users🤑 :</u></b>\n{paid}', context.bot, update.message)
 
 send_auth_handler = CommandHandler(command=BotCommands.AuthorizedUsersCommand, callback=sendAuthChats,

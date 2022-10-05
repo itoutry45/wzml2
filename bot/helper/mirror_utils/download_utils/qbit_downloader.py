@@ -145,9 +145,9 @@ class QbDownloader:
                     self.__stopDup_check = True
                 if not self.__sizeChecked:
                     size = tor_info.size
-                    arch = any([self.__listener.isZip, self.__listener.extract])
                     user_id = self.__listener.message.from_user.id
                     if any([ZIP_UNZIP_LIMIT, LEECH_LIMIT, TORRENT_DIRECT_LIMIT, STORAGE_THRESHOLD]) and user_id != OWNER_ID and user_id not in SUDO_USERS and user_id not in PAID_USERS:
+                        arch = any([self.__listener.isZip, self.__listener.extract])
                         if PAID_SERVICE is True:
                             if STORAGE_THRESHOLD is not None:
                                 acpt = check_storage_threshold(size, arch)
